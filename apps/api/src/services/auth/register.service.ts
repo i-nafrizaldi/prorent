@@ -3,9 +3,7 @@ import { User } from '@prisma/client';
 import prisma from '@/prisma';
 import { hashPassword } from '@/lib/bcrypt';
 
-export const registerService = async (
-  body: Pick<User, 'email' | 'fullName' | 'password'>,
-) => {
+export const registerService = async (body: Omit<User, 'id'>) => {
   try {
     const { email, password } = body;
 

@@ -6,6 +6,7 @@ import { resetPasswordService } from '@/services/auth/reset-password.service';
 import { NextFunction, Request, Response } from 'express';
 
 export class AuthController {
+  // REGISTER
   async registerController(req: Request, res: Response, next: NextFunction) {
     try {
       const result = await registerService(req.body);
@@ -16,6 +17,7 @@ export class AuthController {
     }
   }
 
+  // LOGIN
   async loginController(req: Request, res: Response, next: NextFunction) {
     try {
       const result = await loginService(req.body);
@@ -26,6 +28,7 @@ export class AuthController {
     }
   }
 
+  // KEEP LOGIN
   async keepLoginController(req: Request, res: Response, next: NextFunction) {
     try {
       const id = req.body.user.id;
@@ -38,6 +41,7 @@ export class AuthController {
     }
   }
 
+  // FORGOT PASS
   async forgotPasswordController(
     req: Request,
     res: Response,
@@ -52,6 +56,7 @@ export class AuthController {
     }
   }
 
+  // RESET PASS
   async resetPasswordController(
     req: Request,
     res: Response,

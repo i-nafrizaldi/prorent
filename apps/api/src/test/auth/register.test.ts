@@ -3,7 +3,8 @@ import { prismaMock } from '../prisma';
 import request from 'supertest';
 
 const requestBody = {
-  fullName: 'fullname',
+  firstName: 'firstName',
+  lastName: 'lastName',
   email: 'user@mail.com',
   password: 'SecurePassword',
 };
@@ -14,7 +15,9 @@ describe('POST /auth/register', () => {
     prismaMock.user.findFirst.mockResolvedValueOnce(null);
     prismaMock.user.create.mockResolvedValueOnce({
       id: 1,
-      fullName: 'mock fullName',
+      firstName: 'mock firstName',
+      lastName: 'mock lastName',
+      role: 'USER',
       email: 'mock email',
       password: 'mock password',
       createdAt: new Date(),
@@ -31,7 +34,9 @@ describe('POST /auth/register', () => {
   it('should return eror if email already exist', async () => {
     prismaMock.user.findFirst.mockResolvedValueOnce({
       id: 1,
-      fullName: 'mock fullName',
+      firstName: 'mock firstName',
+      lastName: 'mock lastName',
+      role: 'USER',
       email: 'mock email',
       password: 'mock password',
       createdAt: new Date(),
